@@ -4,12 +4,12 @@ Machine learning pipeline for detecting fraudulent credit card transactions on a
 
 ## Results
 
-| Model | Accuracy | Precision | Recall | F1 | ROC-AUC | PR-AUC |
-|---|---|---|---|---|---|---|
-| **XGBoost** | **99.95%** | 94.67% | **74.74%** | **83.53%** | 0.9771 | **0.8233** |
-| Random Forest | 99.95% | **95.89%** | 73.68% | 83.33% | 0.9354 | 0.8141 |
-| LightGBM | 99.95% | 93.24% | 72.63% | 81.66% | **0.9785** | 0.8133 |
-| KNN (K=15) | 99.94% | 94.20% | 68.42% | 79.27% | 0.9102 | 0.7888 |
+| Model | Threshold | Accuracy | Precision | Recall | F1 | ROC-AUC | PR-AUC |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| **XGBoost tuned** | **0.41** | 99.95% | 82.00% | **75.79%** | 84.71% | 0.9780 | 0.8211 |
+| LightGBM tuned | 0.11 | 99.95% | 91.03% | 82.74% | 82.08% | **0.9795** | 0.8163 |
+| Baseline XGBoost | 0.50 | **99.96%** | **84.30%** | **75.79%** | **85.21%** | 0.9804 | **0.8354** |
+| KNN (K=15) | 0.55 | 99.94% | 94.20% | 82.42% | 79.27% | 0.9102 | 0.7888 |
 
 Decision thresholds were selected on out-of-fold validation predictions, not on the test set: XGBoost 0.35, Random Forest 0.40, LightGBM 0.42, KNN 0.55. Full numbers, including confusion matrix counts, are in [`results/model_comparison.csv`](results/model_comparison.csv).
 
@@ -47,17 +47,11 @@ credit-card-fraud-detection/
 ├── requirements.txt
 ├── features.py                 # feature engineering shared by training and inference
 ├── predict.py                  # score a CSV with a saved model
-├── models/
-│   ├── fraud_xgboost.pkl       # final model
-│   ├── fraud_random_forest.pkl
-│   ├── fraud_lightgbm.pkl
-│   ├── fraud_knn.pkl
-│   ├── fraud_xgboost_tuned.pkl
-│   └── fraud_lightgbm_tuned.pkl
-├── notebooks/
-│   └── fraud_detection.ipynb   # full training and evaluation pipeline
-└── results/
-    └── model_comparison.csv
+│── fraud_xgboost.pkl       # final model
+│── fraud_random_forest.pkl
+│── fraud_lightgbm.pkl
+│── fraud_knn.pkl
+└── model_comparison.csv
 ```
 
 Each `.pkl` file is a joblib bundle containing the fitted model, the decision threshold and the feature names.
