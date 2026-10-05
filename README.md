@@ -6,9 +6,9 @@ Machine learning pipeline for detecting fraudulent credit card transactions on a
 
 | Model | Threshold | Accuracy | Precision | Recall | F1 | ROC-AUC | PR-AUC |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| **XGBoost tuned** | **0.41** | 99.95% | 82.00% | **75.79%** | 84.71% | 0.9780 | 0.8211 |
-| LightGBM tuned | 0.11 | 99.95% | 91.03% | 82.74% | 82.08% | **0.9795** | 0.8163 |
-| Baseline XGBoost | 0.50 | **99.96%** | **84.30%** | **75.79%** | **85.21%** | 0.9804 | **0.8354** |
+| XGBoost tuned | 0.41 | 99.95% | 82.00% | 75.79% | 84.71% | 0.9780 | 0.8211 |
+| LightGBM tuned | 0.11 | 99.95% | 91.03% | 82.74% | 82.08% | 0.9795 | 0.8163 |
+| XGBoost | 0.50 | 99.96% | 84.30% | 75.79% | 85.21% | 0.9804 | 0.8354 |
 | KNN (K=15) | 0.55 | 99.94% | 94.20% | 82.42% | 79.27% | 0.9102 | 0.7888 |
 
 Decision thresholds were selected on out-of-fold validation predictions, not on the test set: XGBoost 0.35, Random Forest 0.40, LightGBM 0.42, KNN 0.55. Full numbers, including confusion matrix counts, are in [`results/model_comparison.csv`](results/model_comparison.csv).
